@@ -274,13 +274,13 @@ st.markdown(f"""
 
     background-image:
         linear-gradient(
-            rgba(0,0,0,0.80),
-            rgba(0,0,0,0.80)
+            rgba(0,0,0,0.65),
+            rgba(0,0,0,0.65)
         ),
         url("data:image/jpeg;base64,{bg_image}");
 
     background-size: cover;
-    background-position: center;
+    background-position: top center;
     background-repeat: no-repeat;
     background-attachment: fixed;
 }}

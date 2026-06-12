@@ -277,7 +277,7 @@ st.markdown(f"""
             rgba(0,0,0,0.80),
             rgba(0,0,0,0.80)
         ),
-        uurl("data:image/jpeg;base64,{bg_image}");
+        url("data:image/jpeg;base64,{bg_image}");
 
     background-size: cover;
     background-position: center;

@@ -270,7 +270,7 @@ with st.sidebar:
 st.markdown(f"""
 <style>
 
-[data-testid="stAppViewContainer"] {
+.stApp {{
 
     background-image:
         linear-gradient(
@@ -283,7 +283,7 @@ st.markdown(f"""
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-}
+}}
 
 .main-title {{
     text-align:center;

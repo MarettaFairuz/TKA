@@ -326,7 +326,7 @@ batch_list = pd.read_sql(
 batch_pilihan = st.selectbox(
     "Pilih Batch TO",
     batch_list["batch_to"].tolist()
-
+)
 
 data = pd.read_sql(
     f"""

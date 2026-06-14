@@ -191,13 +191,6 @@ with st.sidebar:
                 )
 
 # =========================
-# WAJIB LOGIN DULU
-# =========================
-
-if not st.session_state.login_status:
-    st.stop()
-
-# =========================
 # HALAMAN UTAMA
 # =========================
 
@@ -279,16 +272,21 @@ st.markdown(
     unsafe_allow_html=True
 )
 # =========================
+# HARUS LOGIN DULU
+# =========================
+
+if not st.session_state.login_status:
+    st.stop()
+
+# =========================
 # TAMPILKAN DATA DATABASE
 # =========================
 
 st.markdown("<br><br>", unsafe_allow_html=True)
 
-if st.session_state.login_status:
+st.markdown("<br>", unsafe_allow_html=True)
 
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    st.header("Tampilan Data Hasil Try Out TKA Siswa")
+st.header("Tampilan Data Hasil Try Out TKA Siswa")
 
 batch_list = pd.read_sql(
     """

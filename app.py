@@ -288,37 +288,23 @@ st.markdown("<br>", unsafe_allow_html=True)
 
 st.header("Tampilan Data Hasil Try Out TKA Siswa")
 
-batch_list = pd.read_sql(
-    """
-    SELECT DISTINCT batch_to
-    FROM nilai_tryout
-    ORDER BY batch_to
-    """,
-    engine
-)
-
-batch_pilihan = st.selectbox(
-    "Pilih Batch TO",
-    batch_list["batch_to"].tolist()
-)
-
 data = pd.read_sql(
-    f"""
+    """
     SELECT *
     FROM nilai_tryout
-    WHERE batch_to = '{batch_pilihan}'
+    ORDER BY nama_siswa, batch_to
     """,
     engine
 )
 
 mata_pelajaran = st.segmented_control(
-        "Pilih Mata Pelajaran",
-        [
-            "Matematika",
-            "Bahasa Indonesia"
-        ],
-        default="Matematika"
-    )
+    "Pilih Mata Pelajaran",
+    [
+        "Matematika",
+        "Bahasa Indonesia"
+    ],
+    default="Matematika"
+)
 
 if mata_pelajaran == "Matematika":
 

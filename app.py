@@ -314,13 +314,28 @@ if st.session_state.login_status:
 
     st.header("Tampilan Data Hasil Try Out TKA Siswa")
 
-    data = pd.read_sql(
-        """
-        SELECT *
-        FROM nilai_tryout
-        """,
-        engine
-    )
+batch_list = pd.read_sql(
+    """
+    SELECT DISTINCT batch_to
+    FROM nilai_tryout
+    ORDER BY batch_to
+    """,
+    engine
+)
+
+batch_pilihan = st.selectbox(
+    "Pilih Batch TO",
+    batch_list["batch_to"].tolist()
+
+
+data = pd.read_sql(
+    f"""
+    SELECT *
+    FROM nilai_tryout
+    WHERE batch_to = '{batch_pilihan}'
+    """,
+    engine
+)
 
     mata_pelajaran = st.segmented_control(
         "Pilih Mata Pelajaran",

@@ -80,13 +80,6 @@ with st.sidebar:
         st.success(
             "Login berhasil"
         )
-    
-    # =========================
-    # WAJIB LOGIN DULU
-    # =========================
-
-    if not st.session_state.login_status:
-        st.stop()
 
         st.markdown("---")
 
@@ -129,10 +122,6 @@ with st.sidebar:
 
                 try:
 
-                    # =====================
-                    # BACA FILE
-                    # =====================
-
                     if uploaded_file.name.endswith(
                         ".csv"
                     ):
@@ -147,53 +136,26 @@ with st.sidebar:
                             uploaded_file
                         )
 
-
-                    # =====================
-                    # RENAME KOLOM
-                    # =====================
-
                     df = df.rename(
                         columns={
-                            "Nama Siswa":
-                                "nama_siswa",
-
-                            "Bilangan":
-                                "bilangan",
-
-                            "Aljabar":
-                                "aljabar",
-
-                            "Geometri":
-                                "geometri",
-
-                            "Peluang":
-                                "peluang",
-
-                            "Tekstual":
-                                "tekstual",
-
-                            "Inferensial":
-                                "inferensial",
-
-                            "Evaluasi":
-                                "evaluasi"
+                            "Nama Siswa": "nama_siswa",
+                            "Bilangan": "bilangan",
+                            "Aljabar": "aljabar",
+                            "Geometri": "geometri",
+                            "Peluang": "peluang",
+                            "Tekstual": "tekstual",
+                            "Inferensial": "inferensial",
+                            "Evaluasi": "evaluasi"
                         }
                     )
 
-                    # Hapus kolom No
                     if "No" in df.columns:
 
                         df = df.drop(
                             columns=["No"]
                         )
 
-                    # Tambahkan batch TO
                     df["batch_to"] = batch_to
-
-
-                    # =====================
-                    # SIMPAN DATABASE
-                    # =====================
 
                     df.to_sql(
                         "nilai_tryout",
@@ -227,6 +189,13 @@ with st.sidebar:
                 st.warning(
                     "Silakan pilih file terlebih dahulu"
                 )
+
+# =========================
+# WAJIB LOGIN DULU
+# =========================
+
+if not st.session_state.login_status:
+    st.stop()
 
 # =========================
 # HALAMAN UTAMA

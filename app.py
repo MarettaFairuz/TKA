@@ -41,7 +41,6 @@ bg_image = get_base64_image(
 DATABASE_URL = os.getenv("SUPABASE_DATABASE_URL")
 
 engine = create_engine(DATABASE_URL)
-st.write(DATABASE_URL)
 
 # =========================
 # SIDEBAR
@@ -141,14 +140,6 @@ with st.sidebar:
                             uploaded_file
                         )
 
-                    # Preview data
-                    st.write(
-                        "Preview Data:"
-                    )
-
-                    st.dataframe(
-                        df.head()
-                    )
 
                     # =====================
                     # RENAME KOLOM
@@ -192,14 +183,6 @@ with st.sidebar:
                     # Tambahkan batch TO
                     df["batch_to"] = batch_to
 
-                    # Debug kolom
-                    st.write(
-                        "Kolom setelah rename:"
-                    )
-
-                    st.write(
-                        df.columns.tolist()
-                    )
 
                     # =====================
                     # SIMPAN DATABASE

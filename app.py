@@ -80,6 +80,13 @@ with st.sidebar:
         st.success(
             "Login berhasil"
         )
+    
+    # =========================
+    # WAJIB LOGIN DULU
+    # =========================
+
+    if not st.session_state.login_status:
+        st.stop()
 
         st.markdown("---")
 

@@ -41,6 +41,7 @@ bg_image = get_base64_image(
 DATABASE_URL = os.getenv("SUPABASE_DATABASE_URL")
 
 engine = create_engine(DATABASE_URL)
+st.write(DATABASE_URL)
 
 # =========================
 # SIDEBAR

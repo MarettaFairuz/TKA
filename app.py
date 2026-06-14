@@ -337,7 +337,7 @@ data = pd.read_sql(
     engine
 )
 
-    mata_pelajaran = st.segmented_control(
+mata_pelajaran = st.segmented_control(
         "Pilih Mata Pelajaran",
         [
             "Matematika",
@@ -346,7 +346,7 @@ data = pd.read_sql(
         default="Matematika"
     )
 
-    if mata_pelajaran == "Matematika":
+if mata_pelajaran == "Matematika":
 
         sub_mapel = [
             "bilangan",
@@ -355,7 +355,7 @@ data = pd.read_sql(
             "peluang"
         ]
 
-    else:
+else:
 
         sub_mapel = [
             "tekstual",
@@ -363,9 +363,9 @@ data = pd.read_sql(
             "evaluasi"
         ]
 
-    hasil = []
+hasil = []
 
-    for sub in sub_mapel:
+for sub in sub_mapel:
 
         pivot = data.pivot_table(
             index="nama_siswa",
@@ -379,42 +379,42 @@ data = pd.read_sql(
 
         hasil.append(pivot)
 
-    tabel_final = pd.concat(
+tabel_final = pd.concat(
         hasil,
         axis=1
     )
 
     # pindahkan nama_siswa jadi kolom biasa
-    tabel_final = tabel_final.reset_index()
+tabel_final = tabel_final.reset_index()
 
-    tabel_final.insert(
+tabel_final.insert(
         0,
         "No",
         range(1, len(tabel_final) + 1)
     )
 
     # buat header bertingkat untuk Nama Siswa
-    kolom_baru = [
+kolom_baru = [
         ("No", ""),
         ("Nama Siswa", "")
     ]
 
-    kolom_baru.extend(
+kolom_baru.extend(
         tabel_final.columns[2:]
     )
 
-    tabel_final.columns = pd.MultiIndex.from_tuples(
+tabel_final.columns = pd.MultiIndex.from_tuples(
         kolom_baru
     )
 
     # Hilangkan tulisan batch_to
-    tabel_final.columns.names = [None, None]
+tabel_final.columns.names = [None, None]
 
     # Hilangkan angka desimal
-    tabel_final = tabel_final.fillna("")
-    tabel_final = tabel_final.astype(object)
+tabel_final = tabel_final.fillna("")
+tabel_final = tabel_final.astype(object)
 
-    for col in tabel_final.columns:
+for col in tabel_final.columns:
         tabel_final[col] = tabel_final[col].apply(
             lambda x: int(x)
             if isinstance(x, (int, float))
@@ -422,7 +422,7 @@ data = pd.read_sql(
             else x
         )
 
-    styled_table = (
+styled_table = (
         tabel_final.style
         .set_properties(**{
             "text-align": "center",
@@ -472,7 +472,7 @@ data = pd.read_sql(
         ])
     )
 
-    st.write(
+st.write(
         styled_table.hide(axis="index").to_html(),
         unsafe_allow_html=True
     )

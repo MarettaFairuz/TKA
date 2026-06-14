@@ -107,7 +107,7 @@ with st.sidebar:
                 step=1
             )
 
-            batch_to = f"TO {nomor_to}"
+            batch_to = f"TO{nomor_to}"
 
         uploaded_file = st.file_uploader(
             "Upload File",
@@ -334,7 +334,10 @@ for sub in sub_mapel:
         )
 
         pivot.columns = pd.MultiIndex.from_product(
-            [[sub.title()], pivot.columns]
+        [
+            [sub.title()],
+            [str(col).replace("TO ", "TO") for col in pivot.columns]
+        ]
         )
 
         hasil.append(pivot)
